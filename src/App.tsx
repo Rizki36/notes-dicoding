@@ -26,7 +26,7 @@ class App extends React.Component<any, AppProps, any> {
 
     this.handleActiveTabChange = this.handleActiveTabChange.bind(this);
     this.handleSearchInput = this.handleSearchInput.bind(this);
-    this.filteredSearchNote = this.filteredSearchNote.bind(this);
+    this.filteredNotes = this.filteredNotes.bind(this);
     this.handleAddNote = this.handleAddNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleArchiveNote = this.handleArchiveNote.bind(this);
@@ -44,19 +44,20 @@ class App extends React.Component<any, AppProps, any> {
    * search notes by name
    * when search is empty, return all notes
    */
-  filteredSearchNote = () => {
+  filteredNotes = () => {
     const search = this.state.search.toLowerCase();
     if (!search) return this.state.notes;
 
     const filteredNotes = this.state.notes.filter((note) =>
       note.title.toLowerCase().includes(search),
     );
+
     return filteredNotes;
   };
 
   handleAddNote(note: NoteType) {
     this.setState({
-      notes: [...this.state.notes, note],
+      notes: [note, ...this.state.notes],
     });
   }
 
@@ -107,7 +108,7 @@ class App extends React.Component<any, AppProps, any> {
                   handleArchiveNote={this.handleArchiveNote}
                   handleDeleteNote={this.handleDeleteNote}
                   // is it okey ?
-                  notes={this.filteredSearchNote()}
+                  notes={this.filteredNotes()}
                 />
               ) : (
                 <NoteList
@@ -116,7 +117,7 @@ class App extends React.Component<any, AppProps, any> {
                   handleArchiveNote={this.handleArchiveNote}
                   handleDeleteNote={this.handleDeleteNote}
                   // is it okey ?
-                  notes={this.filteredSearchNote()}
+                  notes={this.filteredNotes()}
                 />
               )}
             </div>

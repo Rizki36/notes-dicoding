@@ -31,7 +31,7 @@ body {
 /* ------------------------------------------------- */
 
 .App {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center pb-10;
 }
 
 .app-wrapper {
