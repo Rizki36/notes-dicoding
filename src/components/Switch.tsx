@@ -11,7 +11,7 @@ const Switch: FC<SwitchProps> = (props) => {
   const { checked, name, id, children } = props;
 
   return (
-    <button className="relative">
+    <button type="button" className="relative">
       <input
         id={id}
         checked={checked}

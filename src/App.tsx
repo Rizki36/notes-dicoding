@@ -10,7 +10,9 @@ export type TabType = 'active' | 'archived';
 
 type AppProps = {
   notes: NoteType[];
+  filteredNotes: NoteType[];
   activeTab: TabType;
+  search: string;
 };
 
 class App extends React.Component<any, AppProps, any> {
@@ -19,14 +21,35 @@ class App extends React.Component<any, AppProps, any> {
 
     this.state = {
       notes: initialData,
+      filteredNotes: initialData,
       activeTab: 'active',
+      search: '',
     };
 
     this.handleActiveTabChange = this.handleActiveTabChange.bind(this);
+    this.filteredSearchNote = this.filteredSearchNote.bind(this);
   }
 
   handleActiveTabChange = (activeTab: TabType) => {
     this.setState({ activeTab });
+  };
+
+  handleSearchInput = (value: string) => {
+    this.setState({ search: value });
+  };
+
+  /**
+   * search notes by name
+   * when search is empty, return all notes
+   */
+  filteredSearchNote = () => {
+    const search = this.state.search.toLowerCase();
+    if (!search) return this.state.notes;
+
+    const filteredNotes = this.state.notes.filter((note) =>
+      note.title.toLowerCase().includes(search),
+    );
+    return filteredNotes;
   };
 
   render() {
@@ -44,7 +67,9 @@ class App extends React.Component<any, AppProps, any> {
             <div className="w-full mx-8">
               <NoteControl
                 activeTab={this.state.activeTab}
+                search={this.state.search}
                 handleActiveTabChange={this.handleActiveTabChange}
+                handleSearchInput={this.handleSearchInput}
               />
               {this.state.activeTab === 'active' ? (
                 <NoteList
@@ -52,7 +77,7 @@ class App extends React.Component<any, AppProps, any> {
                   archived={false}
                   handleArchiveNote={() => {}}
                   handleDeleteNote={() => {}}
-                  notes={this.state.notes}
+                  notes={this.filteredSearchNote()}
                 />
               ) : (
                 <NoteList
@@ -60,7 +85,7 @@ class App extends React.Component<any, AppProps, any> {
                   archived={true}
                   handleArchiveNote={() => {}}
                   handleDeleteNote={() => {}}
-                  notes={this.state.notes}
+                  notes={this.filteredSearchNote()}
                 />
               )}
             </div>

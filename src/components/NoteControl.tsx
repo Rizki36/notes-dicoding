@@ -4,16 +4,26 @@ import React from 'react';
 import Switch from './Switch';
 
 type NoteControlProps = {
+  search: string;
   activeTab: TabType;
   // eslint-disable-next-line no-unused-vars
   handleActiveTabChange: (activeTab: TabType) => void;
+  // eslint-disable-next-line no-unused-vars
+  handleSearchInput: (search: string) => void;
 };
 
 const NoteControl: React.FC<NoteControlProps> = (props) => {
-  const { activeTab, handleActiveTabChange } = props;
+  const { activeTab, handleActiveTabChange, handleSearchInput } = props;
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // @ts-ignore
+    const search = e.currentTarget.elements.search.value;
+    handleSearchInput(search);
+  };
 
   return (
-    <div className="note-control">
+    <form onSubmit={handleSubmit} className="note-control">
       <Switch
         id="notes"
         name="activetab"
@@ -30,9 +40,14 @@ const NoteControl: React.FC<NoteControlProps> = (props) => {
       >
         Archived
       </Switch>
-      <input type="text" className="note-control__input" placeholder="Search by Name" />
+      <input
+        name="search"
+        type="text"
+        className="note-control__input"
+        placeholder="Search by Name"
+      />
       <button className="note-control__btn-search">Search</button>
-    </div>
+    </form>
   );
 };
 
