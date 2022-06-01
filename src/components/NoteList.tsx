@@ -16,6 +16,7 @@ type NoteListProps = {
 const NoteList: FC<NoteListProps> = (props) => {
   const { title, archived, handleArchiveNote, handleDeleteNote, notes } = props;
 
+  /** filter notes by archive status */
   const filteredNotes = notes.filter((note) => note.archived === archived);
 
   return (
@@ -37,7 +38,7 @@ const NoteList: FC<NoteListProps> = (props) => {
 
         {!filteredNotes.length && (
           <div className="note-list-item">
-            <div className="note-list-item__title">
+            <div className="note-list-item__title text-center">
               No {archived ? 'archived' : 'active'} notes
             </div>
           </div>

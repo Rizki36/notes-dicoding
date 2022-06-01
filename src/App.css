@@ -96,6 +96,10 @@ body {
 .note-list__title {
   @apply text-3xl font-bold;
 }
+
+.note-list__container {
+  @apply w-full;
+}
 /* ------------------------------------------------- */
 
 .note-list-item {

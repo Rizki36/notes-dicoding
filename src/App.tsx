@@ -10,7 +10,6 @@ export type TabType = 'active' | 'archived';
 
 type AppProps = {
   notes: NoteType[];
-  filteredNotes: NoteType[];
   activeTab: TabType;
   search: string;
 };
@@ -21,13 +20,16 @@ class App extends React.Component<any, AppProps, any> {
 
     this.state = {
       notes: initialData,
-      filteredNotes: initialData,
       activeTab: 'active',
       search: '',
     };
 
     this.handleActiveTabChange = this.handleActiveTabChange.bind(this);
+    this.handleSearchInput = this.handleSearchInput.bind(this);
     this.filteredSearchNote = this.filteredSearchNote.bind(this);
+    this.handleAddNote = this.handleAddNote.bind(this);
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
+    this.handleArchiveNote = this.handleArchiveNote.bind(this);
   }
 
   handleActiveTabChange = (activeTab: TabType) => {
@@ -52,6 +54,33 @@ class App extends React.Component<any, AppProps, any> {
     return filteredNotes;
   };
 
+  handleAddNote(note: NoteType) {
+    this.setState({
+      notes: [...this.state.notes, note],
+    });
+  }
+
+  handleDeleteNote(id: number) {
+    const newNotes = this.state.notes.filter((note) => note.id !== id);
+
+    this.setState({
+      notes: newNotes,
+    });
+  }
+
+  handleArchiveNote(id: number) {
+    const newNotes = this.state.notes.map((note) => {
+      if (note.id === id) {
+        return { ...note, archived: !note.archived };
+      }
+      return note;
+    });
+
+    this.setState({
+      notes: newNotes,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -75,16 +104,18 @@ class App extends React.Component<any, AppProps, any> {
                 <NoteList
                   title="Notes"
                   archived={false}
-                  handleArchiveNote={() => {}}
-                  handleDeleteNote={() => {}}
+                  handleArchiveNote={this.handleArchiveNote}
+                  handleDeleteNote={this.handleDeleteNote}
+                  // is it okey ?
                   notes={this.filteredSearchNote()}
                 />
               ) : (
                 <NoteList
                   title="Archived"
                   archived={true}
-                  handleArchiveNote={() => {}}
-                  handleDeleteNote={() => {}}
+                  handleArchiveNote={this.handleArchiveNote}
+                  handleDeleteNote={this.handleDeleteNote}
+                  // is it okey ?
                   notes={this.filteredSearchNote()}
                 />
               )}
