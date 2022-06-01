@@ -2,10 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.App {
+  @apply flex flex-col items-center;
+}
+
 .App-header {
   @apply flex justify-center my-5;
 }
 
 .App-header__title {
   @apply text-3xl font-bold;
+}
+
+.note-form {
+  @apply flex flex-col items-center justify-center w-96;
+}
+
+.form-group {
+  @apply flex flex-col w-full mb-3;
 }
