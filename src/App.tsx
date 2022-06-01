@@ -1,18 +1,33 @@
 import './App.css';
 
+import NoteControl from 'components/NoteControl';
 import NoteForm from 'components/NoteForm';
 import NoteList from 'components/NoteList';
 import React from 'react';
 import { initialData, NoteType } from 'utils';
 
-class App extends React.Component<any, { notes: NoteType[] }, any> {
+export type TabType = 'active' | 'archived';
+
+type AppProps = {
+  notes: NoteType[];
+  activeTab: TabType;
+};
+
+class App extends React.Component<any, AppProps, any> {
   constructor(props: any) {
     super(props);
 
     this.state = {
       notes: initialData,
+      activeTab: 'active',
     };
+
+    this.handleActiveTabChange = this.handleActiveTabChange.bind(this);
   }
+
+  handleActiveTabChange = (activeTab: TabType) => {
+    this.setState({ activeTab });
+  };
 
   render() {
     return (
@@ -27,6 +42,11 @@ class App extends React.Component<any, { notes: NoteType[] }, any> {
               <NoteForm />
             </div>
             <div className="w-full mx-8">
+              <NoteControl
+                activeTab={this.state.activeTab}
+                handleActiveTabChange={this.handleActiveTabChange}
+              />
+
               <NoteList
                 title="Notes"
                 archived={false}

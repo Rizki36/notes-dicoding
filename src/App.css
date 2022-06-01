@@ -31,6 +31,19 @@
 
 /* ------------------------------------------------- */
 
+.note-control {
+  @apply w-full mb-5 flex gap-x-3;
+}
+
+.note-control__input {
+  @apply w-full border p-4 rounded-md;
+}
+
+.note-control__btn-search {
+  @apply p-4 rounded-md bg-teal-600 text-white;
+}
+
+/* ------------------------------------------------- */
 .form-group {
   @apply flex flex-col w-full mb-3;
 }
