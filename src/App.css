@@ -110,6 +110,10 @@ body {
   @apply text-xl font-bold;
 }
 
+.note-list-item__createdat {
+  @apply mb-3;
+}
+
 .note-list-item__body {
   @apply w-full;
 }

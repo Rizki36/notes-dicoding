@@ -51,7 +51,7 @@ const initialData: NoteType[] = [
   },
 ];
 
-const showFormattedDate = (date: any) => {
+const showFormattedDate = (date: string) => {
   const options: any = {
     weekday: 'long',
     year: 'numeric',

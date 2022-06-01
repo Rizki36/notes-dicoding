@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoteType } from 'utils';
+import { NoteType, showFormattedDate } from 'utils';
 
 type NoteListItemProps = {
   note: NoteType;
@@ -15,6 +15,7 @@ const NoteListItem: React.FC<NoteListItemProps> = (props) => {
   return (
     <div className="note-list-item" key={note.id}>
       <div className="note-list-item__title">{note.title}</div>
+      <div className="note-list-item__createdat">{showFormattedDate(note.createdAt)}</div>
 
       <div className="flex">
         <div className="note-list-item__body">{note.body}</div>
