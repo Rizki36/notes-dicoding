@@ -45,22 +45,36 @@ body {
 }
 
 .app-header__title {
-  @apply text-3xl font-bold;
+  @apply text-lg lg:text-3xl font-bold;
+}
+
+/* ------------------------------------------------- */
+
+.app-body {
+  @apply flex lg:flex-row flex-col w-full;
 }
 
 /* ------------------------------------------------- */
 
 .note-form {
-  @apply flex flex-col items-center justify-center w-96 border rounded-md p-4;
+  @apply flex flex-col items-center justify-center w-full mb-10  lg:mb-0 lg:w-96 border rounded-md p-4;
 }
 .note-form__title {
-  @apply text-2xl font-bold mb-4;
+  @apply lg:text-2xl font-bold mb-4;
 }
 
 /* ------------------------------------------------- */
 
 .note-control {
-  @apply w-full mb-5 flex gap-x-3;
+  @apply w-full mb-5 flex flex-col gap-y-5 lg:flex-row gap-x-3;
+}
+
+.note-control__active-tab {
+  @apply flex gap-x-3;
+}
+
+.note-control__search-group {
+  @apply flex gap-x-3;
 }
 
 .note-control__input {
@@ -84,8 +98,13 @@ body {
 .btn {
   @apply py-2 px-4;
 }
+
 .btn-primary {
   @apply bg-teal-600 hover:bg-teal-700 text-white rounded;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white rounded;
 }
 
 /* ------------------------------------------------- */
@@ -94,7 +113,7 @@ body {
   @apply flex flex-col items-center justify-center rounded-md shadow w-full py-4 border;
 }
 .note-list__title {
-  @apply text-3xl font-bold;
+  @apply text-lg lg:text-3xl font-bold;
 }
 
 .note-list__container {
@@ -103,15 +122,19 @@ body {
 /* ------------------------------------------------- */
 
 .note-list-item {
-  @apply w-full py-4 px-6;
+  @apply w-full py-4 px-6 border-b last:border-b-0;
 }
 
 .note-list-item__title {
-  @apply text-xl font-bold;
+  @apply text-lg lg:text-xl font-bold;
 }
 
 .note-list-item__createdat {
   @apply mb-3;
+}
+
+.note-list-item__content-wrapper {
+  @apply flex flex-col lg:flex-row;
 }
 
 .note-list-item__body {
@@ -119,5 +142,9 @@ body {
 }
 
 .note-list-item__actions {
-  @apply mx-4;
+  @apply flex flex-row gap-2 mt-5 lg:mt-0 lg:mx-4 lg:flex-col;
+}
+
+.note-list-item__btn {
+  @apply w-20 lg:w-auto;
 }

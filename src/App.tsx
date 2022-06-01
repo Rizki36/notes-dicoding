@@ -90,11 +90,12 @@ class App extends React.Component<any, AppProps, any> {
             <h1 className="app-header__title">Notes App</h1>
           </header>
 
-          <div className="flex">
+          <div className="app-body">
             <div>
               <NoteForm handleAddNote={this.handleAddNote} />
             </div>
-            <div className="w-full mx-8">
+
+            <div className="w-full lg:ml-8">
               <NoteControl
                 activeTab={this.state.activeTab}
                 search={this.state.search}

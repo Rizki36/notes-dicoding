@@ -24,29 +24,33 @@ const NoteControl: React.FC<NoteControlProps> = (props) => {
 
   return (
     <form onSubmit={handleSubmit} className="note-control">
-      <Switch
-        id="notes"
-        name="activetab"
-        checked={activeTab === 'active'}
-        onChange={() => handleActiveTabChange('active')}
-      >
-        Notes
-      </Switch>
-      <Switch
-        id="archived"
-        name="activetab"
-        checked={activeTab === 'archived'}
-        onChange={() => handleActiveTabChange('archived')}
-      >
-        Archived
-      </Switch>
-      <input
-        name="search"
-        type="text"
-        className="note-control__input"
-        placeholder="Search by Name"
-      />
-      <button className="note-control__btn-search">Search</button>
+      <div className="note-control__active-tab">
+        <Switch
+          id="notes"
+          name="activetab"
+          checked={activeTab === 'active'}
+          onChange={() => handleActiveTabChange('active')}
+        >
+          Notes
+        </Switch>
+        <Switch
+          id="archived"
+          name="activetab"
+          checked={activeTab === 'archived'}
+          onChange={() => handleActiveTabChange('archived')}
+        >
+          Archived
+        </Switch>
+      </div>
+      <div className="note-control__search-group">
+        <input
+          name="search"
+          type="text"
+          className="note-control__input"
+          placeholder="Search by Name"
+        />
+        <button className="note-control__btn-search">Search</button>
+      </div>
     </form>
   );
 };

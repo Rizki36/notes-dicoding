@@ -17,16 +17,19 @@ const NoteListItem: React.FC<NoteListItemProps> = (props) => {
       <div className="note-list-item__title">{note.title}</div>
       <div className="note-list-item__createdat">{showFormattedDate(note.createdAt)}</div>
 
-      <div className="flex">
+      <div className="note-list-item__content-wrapper">
         <div className="note-list-item__body">{note.body}</div>
         <div className="note-list-item__actions">
           <button
-            className="btn btn-primary"
+            className="btn btn-primary note-list-item__btn"
             onClick={() => handleArchiveNote(note.id, !note.archived)}
           >
             {note.archived ? 'Unarchive' : 'Archive'}
           </button>
-          <button className="btn btn-danger" onClick={() => handleDeleteNote(note.id)}>
+          <button
+            className="btn btn-danger note-list-item__btn"
+            onClick={() => handleDeleteNote(note.id)}
+          >
             Delete
           </button>
         </div>
