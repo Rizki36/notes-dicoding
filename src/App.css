@@ -6,18 +6,69 @@
   @apply flex flex-col items-center;
 }
 
-.App-header {
-  @apply flex justify-center my-5;
+.app-wrapper {
+  @apply px-11;
 }
 
-.App-header__title {
+/* ------------------------------------------------- */
+
+.app-header {
+  @apply flex justify-center my-5 mb-10;
+}
+
+.app-header__title {
   @apply text-3xl font-bold;
 }
 
+/* ------------------------------------------------- */
+
 .note-form {
-  @apply flex flex-col items-center justify-center w-96;
+  @apply flex flex-col items-center justify-center w-96 border rounded-md p-4;
 }
+.note-form__title {
+  @apply text-2xl font-bold mb-4;
+}
+
+/* ------------------------------------------------- */
 
 .form-group {
   @apply flex flex-col w-full mb-3;
+}
+
+.form-input,
+.form-textarea {
+  @apply rounded-md border-2 border-gray-300 p-2;
+}
+
+.btn {
+  @apply py-2 px-4;
+}
+.btn-primary {
+  @apply bg-teal-600 hover:bg-teal-700 text-white rounded;
+}
+
+/* ------------------------------------------------- */
+
+.note-list {
+  @apply flex flex-col items-center justify-center rounded-md shadow w-full py-4 border;
+}
+.note-list__title {
+  @apply text-3xl font-bold;
+}
+/* ------------------------------------------------- */
+
+.note-list-item {
+  @apply w-full py-4 px-6;
+}
+
+.note-list-item__title {
+  @apply text-xl font-bold;
+}
+
+.note-list-item__body {
+  @apply w-full;
+}
+
+.note-list-item__actions {
+  @apply mx-4;
 }
