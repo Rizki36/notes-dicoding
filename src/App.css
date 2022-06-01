@@ -2,12 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  body::-webkit-scrollbar {
+    width: 15px;
+    height: 20px;
+  }
+
+  body::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    @apply bg-slate-400/30;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    @apply bg-teal-600/50;
+  }
+}
+
+body {
+  @apply overflow-y-scroll;
+}
+
+/* ------------------------------------------------- */
+
 .App {
   @apply flex flex-col items-center;
 }
 
 .app-wrapper {
-  @apply px-11;
+  @apply px-11 w-full;
 }
 
 /* ------------------------------------------------- */

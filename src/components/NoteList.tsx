@@ -21,15 +21,27 @@ const NoteList: FC<NoteListProps> = (props) => {
   return (
     <div className="note-list">
       <div className="note-list__title">{title}</div>
+
+      <hr className="border border-gray-100 my-6 w-full" />
+
       <div className="note-list__container">
-        {filteredNotes.map((note) => (
-          <NoteListItem
-            key={note.id}
-            note={note}
-            handleArchiveNote={handleArchiveNote}
-            handleDeleteNote={handleDeleteNote}
-          />
-        ))}
+        {!!filteredNotes.length &&
+          filteredNotes.map((note) => (
+            <NoteListItem
+              key={note.id}
+              note={note}
+              handleArchiveNote={handleArchiveNote}
+              handleDeleteNote={handleDeleteNote}
+            />
+          ))}
+
+        {!filteredNotes.length && (
+          <div className="note-list-item">
+            <div className="note-list-item__title">
+              No {archived ? 'archived' : 'active'} notes
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

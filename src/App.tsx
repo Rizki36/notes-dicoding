@@ -46,14 +46,23 @@ class App extends React.Component<any, AppProps, any> {
                 activeTab={this.state.activeTab}
                 handleActiveTabChange={this.handleActiveTabChange}
               />
-
-              <NoteList
-                title="Notes"
-                archived={false}
-                handleArchiveNote={() => {}}
-                handleDeleteNote={() => {}}
-                notes={this.state.notes}
-              />
+              {this.state.activeTab === 'active' ? (
+                <NoteList
+                  title="Notes"
+                  archived={false}
+                  handleArchiveNote={() => {}}
+                  handleDeleteNote={() => {}}
+                  notes={this.state.notes}
+                />
+              ) : (
+                <NoteList
+                  title="Archived"
+                  archived={true}
+                  handleArchiveNote={() => {}}
+                  handleDeleteNote={() => {}}
+                  notes={this.state.notes}
+                />
+              )}
             </div>
           </div>
         </div>
