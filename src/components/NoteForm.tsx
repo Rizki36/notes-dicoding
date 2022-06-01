@@ -1,17 +1,24 @@
 import React from 'react';
+import { NoteType } from 'utils';
 
-interface NoteFormState {
+type NoteFormState = {
   title: string;
-  description: string;
+  body: string;
   titleErrMsg: string | null;
-}
-class NoteForm extends React.Component<{}, NoteFormState> {
+};
+
+type NoteFormProps = {
+  // eslint-disable-next-line no-unused-vars
+  handleAddNote: (note: NoteType) => void;
+};
+
+class NoteForm extends React.Component<NoteFormProps, NoteFormState> {
   constructor(props: any) {
     super(props);
 
     this.state = {
       title: '',
-      description: '',
+      body: '',
       titleErrMsg: null,
     };
   }
@@ -23,8 +30,8 @@ class NoteForm extends React.Component<{}, NoteFormState> {
     this.setState({ title: e.target.value });
   };
 
-  handleDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ description: e.target.value });
+  handleBodyInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.setState({ body: e.target.value });
   };
 
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,7 +50,15 @@ class NoteForm extends React.Component<{}, NoteFormState> {
       return;
     }
 
-    this.setState({ titleErrMsg: null });
+    this.props.handleAddNote({
+      id: +new Date(),
+      title: this.state.title,
+      body: this.state.body,
+      archived: false,
+      createdAt: new Date().toString(),
+    });
+
+    this.setState({ titleErrMsg: null, body: '', title: '' });
   };
 
   render() {
@@ -68,8 +83,8 @@ class NoteForm extends React.Component<{}, NoteFormState> {
           <textarea
             className="form-textarea px-4 py-3"
             id="description"
-            value={this.state.description}
-            onInput={this.handleDescriptionInput}
+            value={this.state.body}
+            onInput={this.handleBodyInput}
           />
         </div>
         <button type="submit" className="btn btn-primary">

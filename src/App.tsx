@@ -91,7 +91,7 @@ class App extends React.Component<any, AppProps, any> {
 
           <div className="flex">
             <div>
-              <NoteForm />
+              <NoteForm handleAddNote={this.handleAddNote} />
             </div>
             <div className="w-full mx-8">
               <NoteControl
